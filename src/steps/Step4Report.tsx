@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
-import { BarChart, Bar, LineChart, Line, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import { BarChart, Bar, LineChart, Line, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from 'recharts';
 import { Send, CheckCircle2, FileText, Printer, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/src/components/ui/card';
 import { Button } from '@/src/components/ui/button';
@@ -88,16 +88,18 @@ export default function Step4Report({ appState, updateAppState }: Props) {
           {/* Section 1 */}
           <section>
             <h3 className="text-xl font-bold text-indigo-900 border-l-4 border-indigo-600 pl-3 mb-4">1. 套餐销量分析</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-1 h-48 bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <div className="flex flex-col gap-4">
+              <div className="h-64 w-full bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={mealSalesData} margin={{ top: 10, right: 10, left: -20, bottom: 50 }}>
-                    <XAxis dataKey="name" stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} interval={0} angle={-45} textAnchor="end" height={50} />
+                  <BarChart data={mealSalesData} margin={{ top: 20, right: 30, left: 0, bottom: 60 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                    <XAxis dataKey="name" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} interval={0} angle={-45} textAnchor="end" height={60} />
+                    <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
                     <Bar dataKey="sales" fill="#818cf8" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-              <div className="md:col-span-2 bg-slate-50 rounded-xl p-5 border border-slate-200">
+              <div className="w-full bg-slate-50 rounded-xl p-5 border border-slate-200">
                 <div className="flex justify-between items-center mb-2">
                   <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider">分析师洞察</h4>
                   <button 
@@ -121,17 +123,19 @@ export default function Step4Report({ appState, updateAppState }: Props) {
           {/* Section 2 */}
           <section>
             <h3 className="text-xl font-bold text-cyan-900 border-l-4 border-cyan-600 pl-3 mb-4">2. 厨余垃圾趋势预测</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-1 h-48 bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
+            <div className="flex flex-col gap-4">
+              <div className="h-64 w-full bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={wasteData} margin={{ top: 10, right: 10, left: -20, bottom: 50 }}>
-                    <XAxis dataKey="day" stroke="#64748b" fontSize={10} tickLine={false} axisLine={false} angle={-45} textAnchor="end" height={50} />
+                  <LineChart data={wasteData} margin={{ top: 20, right: 30, left: 0, bottom: 60 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                    <XAxis dataKey="day" stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} angle={-45} textAnchor="end" height={60} />
+                    <YAxis stroke="#64748b" fontSize={11} tickLine={false} axisLine={false} />
                     <Line type="monotone" dataKey="weight" stroke="#06b6d4" strokeWidth={2} dot={false} />
                     <Line type="step" dataKey="target" stroke="#10b981" strokeWidth={1} strokeDasharray="3 3" dot={false} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
-              <div className="md:col-span-2 bg-slate-50 rounded-xl p-5 border border-slate-200">
+              <div className="w-full bg-slate-50 rounded-xl p-5 border border-slate-200">
                 <div className="flex justify-between items-center mb-2">
                   <h4 className="text-sm font-bold text-slate-500 uppercase tracking-wider">分析师洞察</h4>
                   <button 
